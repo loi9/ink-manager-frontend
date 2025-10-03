@@ -1,34 +1,142 @@
-/* frontend/src/App.css */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+/* ================== GLOBAL ================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2 {
-    color: #333;
-    border-bottom: 2px solid #ccc;
+    color: #34495e;
+    border-bottom: 2px solid #bdc3c7;
     padding-bottom: 5px;
     margin-top: 20px;
 }
 
-.init-btn {
-    padding: 10px 15px;
-    background-color: #ffc107;
-    color: #333;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 20px;
+/* ================== CONTAINER ================== */
+.container {
+    max-width: 1200px;
+    width: 90%;        /* Responsive width */
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 10vh; /* Đảm bảo không bị che logo cố định */
+    box-sizing: border-box;
 }
 
+/* ================== NAVBAR ================== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 30px;
+    background-color: #2c3e50;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    flex-wrap: wrap; /* Quan trọng cho mobile */
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    flex-wrap: wrap; /* Mobile wrap */
+}
+
+nav a {
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    background-color: #2c3e50;
+    border-radius: 5px;
+    font-weight: bold;
+    min-width: 100px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+nav a:hover {
+    background-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+nav a.active-link {
+    background-color: #e74c3c;
+    border: 2px solid #c0392b;
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(231,76,60,0.5);
+}
+
+/* ================== LOGO ================== */
+.site-logo {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 80px; /* nhỏ hơn trên mobile */
+    height: auto;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.logo-container img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.app-title {
+    font-size: 1.5em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ecf0f1;
+    text-transform: uppercase;
+}
+
+/* ================== TABLE / DASHBOARD ================== */
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.dashboard-table th, .dashboard-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.dashboard-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.highlight-col {
+    background-color: #ffefd5; 
+    font-weight: bold;
+}
+
+.low-stock {
+    background-color: #f8d7da;
+    font-weight: bold;
+    color: #721c24;
+}
+
+.count-result {
+    text-align: center;
+}
+
+/* ================== FORM ================== */
 .log-form-container {
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    margin-bottom: 20px;
 }
 
 .log-form {
@@ -61,155 +169,64 @@ h1, h2 {
     margin-top: 10px;
 }
 
-.dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+/* ================== MEDIA QUERIES ================== */
+/* Mobile < 768px */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+        padding-top: 15vh;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav a {
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 5px;
+    }
+
+    .site-logo {
+        width: 60px;
+    }
+
+    .logo-container img {
+        height: 30px;
+    }
+
+    .app-title {
+        font-size: 1.2em;
+    }
+
+    .log-form {
+        grid-template-columns: 1fr;
+    }
 }
 
-.dashboard-table th, .dashboard-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
+/* Tablet < 1024px */
+@media (max-width: 1024px) {
+    .container {
+        width: 95%;
+    }
 
-.dashboard-table th {
-    background-color: #007bff;
-    color: white;
-}
+    .site-logo {
+        width: 70px;
+    }
 
-.highlight-col {
-    background-color: #ffefd5; 
-    font-weight: bold;
-}
+    .logo-container img {
+        height: 35px;
+    }
 
-.count-result {
-    text-align: center;
+    .app-title {
+        font-size: 1.4em;
+    }
 }
-
-.low-stock {
-    background-color: #f8d7da; /* Màu đỏ nhạt cho tồn kho thấp */
-    font-weight: bold;
-    color: #721c24;
-}
-/* frontend/src/index.css */
-
-/* --- Định kiểu Navbar và Button Điều hướng --- */
-
-nav {
-    /* Đảm bảo thanh điều hướng là Flexbox để căn giữa các nút */
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Khoảng cách giữa các nút */
-    padding: 15px 0;
-    background-color: #34495e; /* Màu nền tối cho thanh navbar */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Định kiểu cho các Link/Button trong Navbar */
-nav a {
-    /* Thiết lập Link trông giống như Button */
-    padding: 10px 20px;
-    color: white; /* Màu chữ trắng */
-    text-decoration: none; /* Bỏ gạch chân */
-    background-color: #2c3e50; /* Màu nền nút */
-    border: none;
-    border-radius: 5px; /* Bo góc nhẹ */
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.1s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
-    cursor: pointer; /* Hiển thị con trỏ tay */
-    /* Ngăn các nút quá gần nhau trên màn hình nhỏ */
-    min-width: 150px; 
-    text-align: center;
-}
-
-/* Hiệu ứng khi di chuột qua (hover) */
-nav a:hover {
-    background-color: #3498db; /* Màu xanh sáng hơn khi hover */
-    /* Transform nhẹ để tạo hiệu ứng "nổi" */
-    transform: translateY(-2px); 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Hiệu ứng khi Link đang hoạt động (active page) - Sử dụng class cho React Router */
-/* Giả định bạn đã thêm class 'active-link' vào App.jsx (xem Bước 2) */
-nav a.active-link {
-    background-color: #e74c3c; /* Màu đỏ nổi bật cho trang đang chọn */
-    border: 2px solid #c0392b;
-    transform: translateY(0); /* Đảm bảo nút đang hoạt động không bị nâng lên */
-    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
-}
-
-/* Thêm một chút màu sắc cho phần chính */
-h2 {
-    color: #34495e; 
-    border-bottom: 2px solid #bdc3c7;
-    padding-bottom: 5px;
-    margin-top: 20px;
-}
-/* --- Định dạng Logo và Navbar --- */
-
-/* Sử dụng một Font chữ hiện đại hơn cho toàn bộ ứng dụng */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f9; /* Màu nền nhẹ nhàng hơn */
-}
-
-nav {
-    display: flex;
-    /* Dùng space-between để đẩy logo sang trái và các nút sang phải */
-    justify-content: space-between; 
-    align-items: center; /* Căn giữa theo chiều dọc */
-    gap: 15px; 
-    padding: 10px 30px; /* Thêm padding ngang để tạo không gian cho logo */
-    background-color: #2c3e50; /* Giữ màu nền tối cho thanh navbar */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.nav-links {
-    /* Đảm bảo các nút điều hướng vẫn được nhóm lại và căn giữa */
-    display: flex;
-    gap: 15px; 
-    /* Đẩy các nút sang phải (đã bị justify-content: space-between tách ra) */
-    margin-left: auto; 
-}
-
-/* Định kiểu cho khu vực chứa logo và tiêu đề */
-.logo-container {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none; /* Nếu là Link */
-}
-
-.logo-container img {
-    height: 40px; /* Chiều cao cố định cho logo */
-    margin-right: 15px;
-}
-
-.app-title {
-    /* Định kiểu cho tiêu đề văn bản */
-    font-size: 1.8em;
-    font-weight: 800; /* Làm cho chữ đậm hơn */
-    letter-spacing: 1px; /* Thêm khoảng cách giữa các chữ */
-    color: #ecf0f1; /* Màu trắng sáng */
-    /* Có thể thêm kiểu chữ đặc biệt tại đây nếu muốn */
-    text-transform: uppercase;
-}
-.site-logo {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    width: 250px; /* tuỳ chỉnh */
-    height: auto;
-    z-index: 1000;
-}
-
-/* container vẫn giữ căn giữa */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-top: 10vh;
-}
-
