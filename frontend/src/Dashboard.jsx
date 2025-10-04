@@ -1,6 +1,6 @@
 // frontend/src/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
-import api from './services/api';   // ✅ dùng api đã cấu hình sẵn baseURL
+import api from './api';   // ✅ dùng api đã cấu hình sẵn baseURL
 
 function Dashboard() {
   const [dashboardData, setDashboardData] = useState([]);
@@ -117,3 +117,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
