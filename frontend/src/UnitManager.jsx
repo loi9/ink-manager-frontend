@@ -1,6 +1,6 @@
 // frontend/src/UnitManager.jsx
 import React, { useState, useEffect } from 'react';
-import axios from './services/api';   // ✅ Dùng axios client chung (baseURL auto)
+import axios from './api';   // ✅ Dùng axios client chung (baseURL auto)
 
 function UnitManager() {
     const [units, setUnits] = useState([]);
@@ -207,3 +207,4 @@ function UnitManager() {
 }
 
 export default UnitManager;
+
