@@ -1,7 +1,7 @@
 // frontend/src/LogViewer.jsx
 import React, { useState, useEffect } from 'react';
 import axios from './api';
-
+import './LogViewer.css'
 function LogViewer() {
     // ==================== PHẦN GIỮ NGUYÊN ====================
     const [logs, setLogs] = useState([]);
@@ -261,3 +261,4 @@ function LogViewer() {
     );
 }
 export default LogViewer;
+
