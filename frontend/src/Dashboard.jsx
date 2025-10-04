@@ -1,8 +1,6 @@
 // frontend/src/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
-import axios from './services/api';
-
-const API_URL = 'http://localhost:5000/api';
+import api from './services/api';   // ✅ dùng api đã cấu hình sẵn baseURL
 
 function Dashboard() {
   const [dashboardData, setDashboardData] = useState([]);
@@ -11,7 +9,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   const [newLog, setNewLog] = useState({
-    unit_id: '', // Đã đổi từ ink_code sang unit_id
+    unit_id: '', 
     printer_id: '',
     event_type: 'INSTALL',
     status_detail: ''
@@ -20,9 +18,9 @@ function Dashboard() {
   const fetchData = async () => {
     try {
       const [dashboardRes, printersRes, inkUnitsRes] = await Promise.all([
-        axios.get(`${API_URL}/dashboard`),
-        axios.get(`${API_URL}/printers`),
-        axios.get(`${API_URL}/inkunits`),
+        api.get("/dashboard"),   // ✅ không cần API_URL
+        api.get("/printers"),
+        api.get("/inkunits"),
       ]);
       setDashboardData(dashboardRes.data);
       setPrinters(printersRes.data);
@@ -45,74 +43,41 @@ function Dashboard() {
   const handleLogSubmit = async (e) => {
     e.preventDefault();
     if (!newLog.unit_id || !newLog.printer_id) {
-        alert("Vui lòng chọn Mã Hộp Mực RIÊNG BIỆT và Máy In.");
-        return;
+      alert("Vui lòng chọn Mã Hộp Mực RIÊNG BIỆT và Máy In.");
+      return;
     }
     try {
-      await axios.post(`${API_URL}/events`, newLog);
+      await api.post("/events", newLog);   // ✅ dùng api
       alert('Ghi log thành công! Trạng thái hộp mực đã được cập nhật.');
       setNewLog({ unit_id: '', printer_id: '', event_type: 'INSTALL', status_detail: '' });
-      fetchData(); // Tải lại dữ liệu sau khi ghi log
+      fetchData(); 
     } catch (error) {
       console.error("Lỗi khi ghi log:", error);
       alert(`Ghi log thất bại. Lỗi: ${error.response?.data?.error || error.message}`);
     }
   };
-  
-  const handleInitData = async () => {
-      if (!confirm("Bạn có chắc chắn muốn XÓA TOÀN BỘ dữ liệu và khởi tạo lại dữ liệu mẫu không?")) return;
-      try {
-          await axios.post(`${API_URL}/init`);
-          alert('Khởi tạo dữ liệu mẫu thành công!');
-          fetchData();
-      } catch (error) {
-          alert('Khởi tạo thất bại.');
-      }
-  };
 
+  const handleInitData = async () => {
+    if (!confirm("Bạn có chắc chắn muốn XÓA TOÀN BỘ dữ liệu và khởi tạo lại dữ liệu mẫu không?")) return;
+    try {
+      await api.post("/init");   // ✅ dùng api
+      alert('Khởi tạo dữ liệu mẫu thành công!');
+      fetchData();
+    } catch (error) {
+      alert('Khởi tạo thất bại.');
+    }
+  };
 
   if (loading) return <div className="content-loading">Đang tải dữ liệu...</div>;
 
   return (
-	<div>
-	{/*<button onClick={handleInitData} className="init-btn">
+    <div>
+      {/* 
+      <button onClick={handleInitData} className="init-btn">
         Khởi Tạo Dữ Liệu Mẫu (Chạy lần đầu)
       </button>
-
-      <div className="log-form-container">
-        <h2>Ghi Log Sự Kiện Mới</h2>
-        <form onSubmit={handleLogSubmit} className="log-form">
-          
-          <label>Mã Hộp Mực Riêng Biệt:</label>
-          <select name="unit_id" value={newLog.unit_id} onChange={handleLogChange}>
-            <option value="">-- Chọn Hộp Mực --</option>
-            {inkUnits.map(unit => (
-                <option key={unit.unit_id} value={unit.unit_id}>
-                    {unit.unit_id} - {unit.custom_name || unit.ink_code.ink_name} ({unit.status})
-                </option>
-            ))}
-          </select>
-
-          <label>Máy In/Vị Trí:</label>
-          <select name="printer_id" value={newLog.printer_id} onChange={handleLogChange}>
-            <option value="">-- Chọn Máy In --</option>
-            {printers.map(printer => <option key={printer.printer_id} value={printer.printer_id}>{printer.printer_name} ({printer.printer_id})</option>)}
-          </select>
-          
-          <label>Loại Sự Kiện:</label>
-          <select name="event_type" value={newLog.event_type} onChange={handleLogChange}>
-            <option value="INSTALL">Lắp Mới (Trạng thái: INSTALLED)</option>
-            <option value="REFILL">Nạp Mực</option>
-            <option value="DRUM_REPLACE">Thay Drum</option>
-            <option value="DISPOSE">Hủy (Trạng thái: DISPOSED)</option>
-          </select>
-          
-          <label>Chi Tiết (Tùy chọn):</label>
-          <input type="text" name="status_detail" value={newLog.status_detail} onChange={handleLogChange} />
-          
-          <button type="submit">Ghi Log</button>
-        </form>
-	</div>*/}
+      ...
+      */}
 
       <hr/>
 
@@ -141,7 +106,7 @@ function Dashboard() {
               <td>{item.latest_refill_date}</td>
               <td>{item.total_refill_count}</td>
               <td>{item.latest_drum_date}</td>
-              <td className="highlight-col count-result">{item.refills_after_drum}</td> 
+              <td className="highlight-col count-result">{item.refills_after_drum}</td>
               <td>{item.avg_refill_cycle}</td>
             </tr>
           ))}
@@ -150,6 +115,5 @@ function Dashboard() {
     </div>
   );
 }
-
 
 export default Dashboard;
