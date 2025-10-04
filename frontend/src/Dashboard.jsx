@@ -1,6 +1,6 @@
 // frontend/src/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from './services/api';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -150,5 +150,6 @@ function Dashboard() {
     </div>
   );
 }
+
 
 export default Dashboard;
