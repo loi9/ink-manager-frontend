@@ -1,6 +1,6 @@
 // frontend/src/LogViewer.jsx
 import React, { useState, useEffect } from 'react';
-import axios from './api';   // ✅ dùng axios config sẵn (baseURL đã set ở services/api.js)
+import axios from './api';
 
 function LogViewer() {
     // ==================== PHẦN GIỮ NGUYÊN ====================
@@ -75,9 +75,11 @@ function LogViewer() {
     const [editingLog, setEditingLog] = useState(null);
 
     const handleEditClick = (log) => {
+        // format ngày theo input type=datetime-local yyyy-MM-ddTHH:mm
+        const localDate = log.date ? new Date(log.date).toISOString().slice(0,16) : '';
         setEditingLog({
             ...log,
-            date: log.date ? log.date.split('T')[0] : new Date().toISOString().split('T')[0]
+            date: localDate
         });
     };
 
@@ -92,7 +94,7 @@ function LogViewer() {
                 unit_id: editingLog.unit_id,
                 printer_id: editingLog.printer_id,
                 event_type: editingLog.event_type,
-                status_detail: editingLog.status_detail,
+                status_detail: editingLog.status_detail || '',
                 date: new Date(editingLog.date)
             };
             await axios.put(`/logs/${editingLog._id}`, updatePayload);
@@ -106,12 +108,11 @@ function LogViewer() {
     // ==================== HẾT PHẦN THÊM MỚI ====================
 
     if (loading) return <div className="content-loading">Đang tải dữ liệu...</div>;
-
     const isLogsEmpty = logs.length === 0;
 
     return (
         <div>
-            {/* ==================== FORM GIỮ NGUYÊN: GHI LOG MỚI ==================== */}
+            {/* FORM GHI LOG MỚI */}
             <div className="log-form-container">
                 <h2>Ghi Log Sự Kiện Mới</h2>
                 <form onSubmit={handleLogSubmit} className="log-form">
@@ -149,9 +150,10 @@ function LogViewer() {
                     <button type="submit">Ghi Log</button>
                 </form>
             </div>
+
             <hr/>
 
-            {/* ==================== BẢNG LOGS GIỮ NGUYÊN ==================== */}
+            {/* BẢNG LOGS */}
             <div>
                 <h2>Lịch Sử Sự Kiện (Event Logs)</h2>
                 {isLogsEmpty ? (
@@ -181,7 +183,6 @@ function LogViewer() {
                                     <td>{log.event_type}</td>
                                     <td>{log.status_detail}</td>
                                     <td>
-                                        {/* Thêm nút sửa */}
                                         <button onClick={() => handleEditClick(log)} className="edit-btn">Sửa</button>
                                         <button onClick={() => handleDeleteLog(log._id)} className="delete-btn">Xóa</button>
                                     </td>
@@ -192,14 +193,14 @@ function LogViewer() {
                 )}
             </div>
 
-            {/* ==================== FORM CHỈNH SỬA LOG MỚI ==================== */}
+            {/* FORM CHỈNH SỬA LOG */}
             {editingLog && (
                 <div className="log-form-container">
                     <h2>Chỉnh Sửa Log</h2>
                     <form onSubmit={handleUpdateLog} className="log-form">
-                        <label>Ngày:</label>
+                        <label>Ngày & Giờ:</label>
                         <input 
-                            type="date" 
+                            type="datetime-local"
                             name="date" 
                             value={editingLog.date} 
                             onChange={handleEditingLogChange}
@@ -259,5 +260,4 @@ function LogViewer() {
         </div>
     );
 }
-
 export default LogViewer;
