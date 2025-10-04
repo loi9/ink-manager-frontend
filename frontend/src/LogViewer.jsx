@@ -1,6 +1,6 @@
 // frontend/src/LogViewer.jsx
 import React, { useState, useEffect } from 'react';
-import axios from './services/api';   // ✅ dùng axios config sẵn (baseURL đã set ở services/api.js)
+import axios from './api';   // ✅ dùng axios config sẵn (baseURL đã set ở services/api.js)
 
 function LogViewer() {
     const [logs, setLogs] = useState([]);
@@ -157,3 +157,4 @@ function LogViewer() {
 }
 
 export default LogViewer;
+
