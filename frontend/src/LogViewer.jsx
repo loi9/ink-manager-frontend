@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from './api';   // ✅ dùng axios config sẵn (baseURL đã set ở services/api.js)
 
 function LogViewer() {
+    // ==================== PHẦN GIỮ NGUYÊN ====================
     const [logs, setLogs] = useState([]);
     const [inkUnits, setInkUnits] = useState([]);
     const [printers, setPrinters] = useState([]);
@@ -68,6 +69,41 @@ function LogViewer() {
             alert(`Xóa Log thất bại: ${error.response?.data?.error || error.message}`);
         }
     };
+    // ==================== HẾT PHẦN GIỮ NGUYÊN ====================
+
+    // ==================== PHẦN THÊM MỚI: CHỈNH SỬA LOG ====================
+    const [editingLog, setEditingLog] = useState(null);
+
+    const handleEditClick = (log) => {
+        setEditingLog({
+            ...log,
+            date: log.date ? log.date.split('T')[0] : new Date().toISOString().split('T')[0]
+        });
+    };
+
+    const handleEditingLogChange = (e) => {
+        setEditingLog({ ...editingLog, [e.target.name]: e.target.value });
+    };
+
+    const handleUpdateLog = async (e) => {
+        e.preventDefault();
+        try {
+            const updatePayload = {
+                unit_id: editingLog.unit_id,
+                printer_id: editingLog.printer_id,
+                event_type: editingLog.event_type,
+                status_detail: editingLog.status_detail,
+                date: new Date(editingLog.date)
+            };
+            await axios.put(`/logs/${editingLog._id}`, updatePayload);
+            alert('Cập nhật log thành công!');
+            setEditingLog(null);
+            fetchData();
+        } catch (error) {
+            alert(`Cập nhật thất bại: ${error.response?.data?.error || error.message}`);
+        }
+    };
+    // ==================== HẾT PHẦN THÊM MỚI ====================
 
     if (loading) return <div className="content-loading">Đang tải dữ liệu...</div>;
 
@@ -75,6 +111,7 @@ function LogViewer() {
 
     return (
         <div>
+            {/* ==================== FORM GIỮ NGUYÊN: GHI LOG MỚI ==================== */}
             <div className="log-form-container">
                 <h2>Ghi Log Sự Kiện Mới</h2>
                 <form onSubmit={handleLogSubmit} className="log-form">
@@ -83,7 +120,7 @@ function LogViewer() {
                         <option value="">-- Chọn Hộp Mực --</option>
                         {inkUnits.map(unit => (
                             <option key={unit.unit_id} value={unit.unit_id}>
-                                {unit.unit_id} - {unit.custom_name || unit.ink_code.ink_name} ({unit.status})
+                                {unit.unit_id} - {unit.custom_name || unit.ink_code} ({unit.status})
                             </option>
                         ))}
                     </select>
@@ -112,9 +149,9 @@ function LogViewer() {
                     <button type="submit">Ghi Log</button>
                 </form>
             </div>
-            
             <hr/>
 
+            {/* ==================== BẢNG LOGS GIỮ NGUYÊN ==================== */}
             <div>
                 <h2>Lịch Sử Sự Kiện (Event Logs)</h2>
                 {isLogsEmpty ? (
@@ -144,6 +181,8 @@ function LogViewer() {
                                     <td>{log.event_type}</td>
                                     <td>{log.status_detail}</td>
                                     <td>
+                                        {/* Thêm nút sửa */}
+                                        <button onClick={() => handleEditClick(log)} className="edit-btn">Sửa</button>
                                         <button onClick={() => handleDeleteLog(log._id)} className="delete-btn">Xóa</button>
                                     </td>
                                 </tr>
@@ -152,9 +191,73 @@ function LogViewer() {
                     </table>
                 )}
             </div>
+
+            {/* ==================== FORM CHỈNH SỬA LOG MỚI ==================== */}
+            {editingLog && (
+                <div className="log-form-container">
+                    <h2>Chỉnh Sửa Log</h2>
+                    <form onSubmit={handleUpdateLog} className="log-form">
+                        <label>Ngày:</label>
+                        <input 
+                            type="date" 
+                            name="date" 
+                            value={editingLog.date} 
+                            onChange={handleEditingLogChange}
+                        />
+
+                        <label>Mã Hộp Mực:</label>
+                        <select 
+                            name="unit_id" 
+                            value={editingLog.unit_id} 
+                            onChange={handleEditingLogChange}
+                        >
+                            {inkUnits.map(unit => (
+                                <option key={unit.unit_id} value={unit.unit_id}>
+                                    {unit.unit_id} - {unit.custom_name || unit.ink_code}
+                                </option>
+                            ))}
+                        </select>
+
+                        <label>Máy In:</label>
+                        <select 
+                            name="printer_id" 
+                            value={editingLog.printer_id} 
+                            onChange={handleEditingLogChange}
+                        >
+                            {printers.map(p => (
+                                <option key={p.printer_id} value={p.printer_id}>
+                                    {p.printer_name} ({p.printer_id})
+                                </option>
+                            ))}
+                        </select>
+
+                        <label>Loại Sự Kiện:</label>
+                        <select 
+                            name="event_type" 
+                            value={editingLog.event_type} 
+                            onChange={handleEditingLogChange}
+                        >
+                            <option value="INSTALL">Lắp Mới (INSTALLED)</option>
+                            <option value="REFILL">Nạp Mực</option>
+                            <option value="DRUM_REPLACE">Thay Drum</option>
+                            <option value="DISPOSE">Hủy (DISPOSED)</option>
+                        </select>
+
+                        <label>Chi Tiết:</label>
+                        <input 
+                            type="text" 
+                            name="status_detail" 
+                            value={editingLog.status_detail || ''} 
+                            onChange={handleEditingLogChange}
+                        />
+
+                        <button type="submit">Cập nhật Log</button>
+                        <button type="button" onClick={() => setEditingLog(null)}>Hủy</button>
+                    </form>
+                </div>
+            )}
         </div>
     );
 }
 
 export default LogViewer;
-
