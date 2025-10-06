@@ -1,31 +1,21 @@
-function App() {
-  return (
-    <div className="layout">
-      {/* Header */}
-      <header className="site-header">
-        <img src="/logo.png" alt="Logo" className="site-logo" />
-        <nav className="navbar">
-          <NavLink to="/">Dashboard</NavLink>
-          <NavLink to="/units">Hộp Mực</NavLink>
-          <NavLink to="/logs">Logs</NavLink>
-        </nav>
-      </header>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Ink Manager</title>
 
-      {/* Nội dung chính */}
-      <main className="site-content">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/units" element={<UnitManager />} />
-          <Route path="/logs" element={<LogViewer />} />
-        </Routes>
-      </main>
+    <!-- manifest để hỗ trợ PWA -->
+    <link rel="manifest" href="/manifest.json">
 
-      {/* Footer */}
-      <footer className="site-footer">
-        <p>© 2025 Gemini Ink Manager — All rights reserved.</p>
-      </footer>
-    </div>
-  );
-}
+    <!-- favicon hiển thị trên tab -->
+    <link rel="icon" type="image/png" href="/icons/icon-192x192.png">
 
-export default App;
+    <!-- thêm apple touch icon cho iOS -->
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
