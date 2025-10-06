@@ -230,3 +230,21 @@ nav a.active-link {
         font-size: 1.4em;
     }
 }
+/* Desktop ≥ 1025px */
+@media (min-width: 1025px) {
+    .site-logo {
+        width: 120px;     /* logo to hơn */
+        top: 30px;        /* cách đỉnh hơn */
+        left: 60px;       /* cách mép trái xa hơn */
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 100px; /* đẩy nội dung xuống chút để không chạm logo */
+    }
+
+    .app-title {
+        font-size: 1.6em;
+    }
+}
