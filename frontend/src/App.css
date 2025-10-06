@@ -233,9 +233,9 @@ nav a.active-link {
 /* Desktop ≥ 1025px */
 @media (min-width: 1025px) {
     .site-logo {
-        width: 120px;     /* logo to hơn */
+        width: 200px;     /* logo to hơn */
         top: 30px;        /* cách đỉnh hơn */
-        left: 60px;       /* cách mép trái xa hơn */
+        left: 80px;       /* cách mép trái xa hơn */
     }
 
     .container {
@@ -248,3 +248,4 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
