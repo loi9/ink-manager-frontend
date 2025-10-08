@@ -29,12 +29,12 @@
   gap: 10px;
 }
 
-.dashboard-table {
+.dashboard-tables {
   width: 100%;
   border-collapse: collapse;
 }
 
-.dashboard-table th, .dashboard-table td {
+.dashboard-tables th, .dashboard-tables td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
