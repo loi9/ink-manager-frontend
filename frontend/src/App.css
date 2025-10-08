@@ -108,6 +108,9 @@ nav a.active-link {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
+    min-width: 140px;         /* 👈 mỗi cột có độ rộng tối thiểu */
+    word-wrap: break-word;    /* 👈 nếu chữ dài, tự xuống dòng */
+    white-space: normal;      /* 👈 cho phép xuống dòng khi cần */
 }
 
 .dashboard-table th {
@@ -248,4 +251,5 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
