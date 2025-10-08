@@ -114,6 +114,7 @@ nav a.active-link {
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
+    height: 28px;
 }
 
 /* ================== CHIỀU RỘNG LINH HOẠT THEO CỘT ================== */
@@ -309,6 +310,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
