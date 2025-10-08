@@ -137,7 +137,7 @@ function LogViewer() {
       {/* Bảng logs */}
       <h2>Lịch Sử Sự Kiện</h2>
       {logs.length === 0 ? <p>Không có log nào.</p> :
-        <table className="dashboard-table">
+        <table className="dashboard-tables">
           <thead>
             <tr>
               <th>ID</th><th>Ngày</th><th>Unit</th><th>Máy In</th><th>Sự Kiện</th><th>Chi Tiết</th><th>Hành động</th>
@@ -204,3 +204,4 @@ function LogViewer() {
   );
 }
 export default LogViewer;
+
