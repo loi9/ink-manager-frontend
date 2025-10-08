@@ -102,75 +102,12 @@ nav a.active-link {
     border-collapse: collapse;
     margin-top: 20px;
     overflow-x: auto;
-    table-layout: auto;
 }
 
-/* Các ô tiêu đề & dữ liệu */
-.dashboard-table th,
-.dashboard-table td {
-  border: 1px solid #ddd;
-  padding: 10px 12px;
-  text-align: left;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
-    height: 28px;
-}
-
-/* ================== CHIỀU RỘNG LINH HOẠT THEO CỘT ================== */
-.dashboard-table th:nth-child(1),
-.dashboard-table td:nth-child(1) {
-  width: 6% !important;     /* Mã Unit */
-  min-width: 60px;
-}
-
-.dashboard-table th:nth-child(2),
-.dashboard-table td:nth-child(2) {
-  width: 20% !important;    /* Tên/Loại Mực */
-  min-width: 190px;
-}
-
-.dashboard-table th:nth-child(3),
-.dashboard-table td:nth-child(3) {
-  width: 10% !important;    /* Trạng thái */
-  min-width: 80px;
-}
-
-.dashboard-table th:nth-child(4),
-.dashboard-table td:nth-child(4) {
-  width: 18% !important;    /* Máy đang SD/Vị trí */
-  min-width: 150px;
-}
-
-.dashboard-table th:nth-child(5),
-.dashboard-table td:nth-child(5) {
-  width: 13% !important;    /* Ngày Nạp Gần Nhất */
-  min-width: 80px;
-}
-
-.dashboard-table th:nth-child(6),
-.dashboard-table td:nth-child(6) {
-  width: 8% !important;     /* Tổng Lần Nạp */
-  min-width: 70px;
-  text-align: center;
-}
-
-.dashboard-table th:nth-child(7),
-.dashboard-table td:nth-child(7) {
-  width: 13% !important;    /* Ngày Thay Drum Gần Nhất */
-  min-width: 80px;
-}
-
-.dashboard-table th:nth-child(8),
-.dashboard-table td:nth-child(8) {
-  width: 7% !important;     /* Nạp SAU Thay Drum */
-  text-align: center;
-}
-
-.dashboard-table th:nth-child(9),
-.dashboard-table td:nth-child(9) {
-  width: 10% !important;    /* Chu kỳ Nạp TB */
-  text-align: center;
+.dashboard-table th, .dashboard-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
 }
 .dashboard-table th {
     background-color: #007bff;
@@ -310,6 +247,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
