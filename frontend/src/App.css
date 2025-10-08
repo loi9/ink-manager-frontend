@@ -15,11 +15,11 @@ h1, h2 {
 
 /* ================== CONTAINER ================== */
 .container {
-    max-width: 1800px;
+    max-width: 1900px;
     width: 95%;        /* Responsive width */
     margin: 0 auto;
     padding: 20px;
-    padding-top: 10vh; /* Đảm bảo không bị che logo cố định */
+    padding-top: 5vh; /* Đảm bảo không bị che logo cố định */
     box-sizing: border-box;
 }
 
@@ -251,6 +251,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
