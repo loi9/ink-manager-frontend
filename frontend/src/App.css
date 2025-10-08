@@ -120,31 +120,31 @@ nav a.active-link {
 .dashboard-table th:nth-child(1),
 .dashboard-table td:nth-child(1) {
   width: 6% !important;     /* Mã Unit */
-  min-width: 90px;
+  min-width: 60px;
 }
 
 .dashboard-table th:nth-child(2),
 .dashboard-table td:nth-child(2) {
   width: 20% !important;    /* Tên/Loại Mực */
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .dashboard-table th:nth-child(3),
 .dashboard-table td:nth-child(3) {
   width: 10% !important;    /* Trạng thái */
-  min-width: 100px;
+  min-width: 80px;
 }
 
 .dashboard-table th:nth-child(4),
 .dashboard-table td:nth-child(4) {
   width: 18% !important;    /* Máy đang SD/Vị trí */
-  min-width: 160px;
+  min-width: 150px;
 }
 
 .dashboard-table th:nth-child(5),
 .dashboard-table td:nth-child(5) {
   width: 13% !important;    /* Ngày Nạp Gần Nhất */
-  min-width: 130px;
+  min-width: 100px;
 }
 
 .dashboard-table th:nth-child(6),
@@ -157,7 +157,7 @@ nav a.active-link {
 .dashboard-table th:nth-child(7),
 .dashboard-table td:nth-child(7) {
   width: 13% !important;    /* Ngày Thay Drum Gần Nhất */
-  min-width: 130px;
+  min-width: 100px;
 }
 
 .dashboard-table th:nth-child(8),
@@ -309,6 +309,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
