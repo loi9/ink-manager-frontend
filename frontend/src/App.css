@@ -105,49 +105,72 @@ nav a.active-link {
     table-layout: auto;
 }
 
-.dashboard-table th, .dashboard-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-    min-width: 90px;         /* 👈 mỗi cột có độ rộng tối thiểu */
-    word-wrap: break-word;    /* 👈 nếu chữ dài, tự xuống dòng */
-    white-space: normal;      /* 👈 cho phép xuống dòng khi cần */
+/* Các ô tiêu đề & dữ liệu */
+.dashboard-table th,
+.dashboard-table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: left;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
-/* === CHIỀU RỘNG LINH HOẠT THEO CỘT === */
-/* Ví dụ: Cột 1 nhỏ, cột 2 và 4 rộng hơn */
+
+/* ================== CHIỀU RỘNG LINH HOẠT THEO CỘT ================== */
 .dashboard-table th:nth-child(1),
 .dashboard-table td:nth-child(1) {
-  width: 8%;    /* Mã hộp mực */
-  min-width: 100px;
+  width: 6% !important;     /* Mã Unit */
+  min-width: 90px;
 }
 
 .dashboard-table th:nth-child(2),
 .dashboard-table td:nth-child(2) {
-  width: 20%;   /* Tên hộp mực */
-  min-width: 180px;
+  width: 20% !important;    /* Tên/Loại Mực */
+  min-width: 200px;
 }
 
 .dashboard-table th:nth-child(3),
 .dashboard-table td:nth-child(3) {
-  width: 12%;   /* Loại mực */
+  width: 10% !important;    /* Trạng thái */
+  min-width: 100px;
 }
 
 .dashboard-table th:nth-child(4),
 .dashboard-table td:nth-child(4) {
-  width: 20%;   /* Máy in / Trạng thái */
-  min-width: 200px;
+  width: 18% !important;    /* Máy đang SD/Vị trí */
+  min-width: 160px;
 }
 
 .dashboard-table th:nth-child(5),
 .dashboard-table td:nth-child(5) {
-  width: 18%;   /* Ngày nạp mực gần nhất */
+  width: 13% !important;    /* Ngày Nạp Gần Nhất */
+  min-width: 130px;
 }
 
 .dashboard-table th:nth-child(6),
 .dashboard-table td:nth-child(6) {
-  width: 18%;   /* Ngày thay drum gần nhất */
+  width: 8% !important;     /* Tổng Lần Nạp */
+  min-width: 80px;
+  text-align: center;
 }
 
+.dashboard-table th:nth-child(7),
+.dashboard-table td:nth-child(7) {
+  width: 13% !important;    /* Ngày Thay Drum Gần Nhất */
+  min-width: 130px;
+}
+
+.dashboard-table th:nth-child(8),
+.dashboard-table td:nth-child(8) {
+  width: 7% !important;     /* Nạp SAU Thay Drum */
+  text-align: center;
+}
+
+.dashboard-table th:nth-child(9),
+.dashboard-table td:nth-child(9) {
+  width: 10% !important;    /* Chu kỳ Nạp TB */
+  text-align: center;
+}
 .dashboard-table th {
     background-color: #007bff;
     color: white;
@@ -286,6 +309,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
