@@ -102,6 +102,7 @@ nav a.active-link {
     border-collapse: collapse;
     margin-top: 20px;
     overflow-x: auto;
+    table-layout: auto;
 }
 
 .dashboard-table th, .dashboard-table td {
@@ -251,6 +252,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
