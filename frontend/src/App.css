@@ -113,6 +113,40 @@ nav a.active-link {
     word-wrap: break-word;    /* 👈 nếu chữ dài, tự xuống dòng */
     white-space: normal;      /* 👈 cho phép xuống dòng khi cần */
 }
+/* === CHIỀU RỘNG LINH HOẠT THEO CỘT === */
+/* Ví dụ: Cột 1 nhỏ, cột 2 và 4 rộng hơn */
+.dashboard-table th:nth-child(1),
+.dashboard-table td:nth-child(1) {
+  width: 8%;    /* Mã hộp mực */
+  min-width: 100px;
+}
+
+.dashboard-table th:nth-child(2),
+.dashboard-table td:nth-child(2) {
+  width: 20%;   /* Tên hộp mực */
+  min-width: 180px;
+}
+
+.dashboard-table th:nth-child(3),
+.dashboard-table td:nth-child(3) {
+  width: 12%;   /* Loại mực */
+}
+
+.dashboard-table th:nth-child(4),
+.dashboard-table td:nth-child(4) {
+  width: 20%;   /* Máy in / Trạng thái */
+  min-width: 200px;
+}
+
+.dashboard-table th:nth-child(5),
+.dashboard-table td:nth-child(5) {
+  width: 18%;   /* Ngày nạp mực gần nhất */
+}
+
+.dashboard-table th:nth-child(6),
+.dashboard-table td:nth-child(6) {
+  width: 18%;   /* Ngày thay drum gần nhất */
+}
 
 .dashboard-table th {
     background-color: #007bff;
@@ -252,6 +286,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
