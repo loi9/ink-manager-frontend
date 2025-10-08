@@ -127,7 +127,7 @@ nav a.active-link {
 .dashboard-table th:nth-child(2),
 .dashboard-table td:nth-child(2) {
   width: 20% !important;    /* Tên/Loại Mực */
-  min-width: 180px;
+  min-width: 190px;
 }
 
 .dashboard-table th:nth-child(3),
@@ -145,20 +145,20 @@ nav a.active-link {
 .dashboard-table th:nth-child(5),
 .dashboard-table td:nth-child(5) {
   width: 13% !important;    /* Ngày Nạp Gần Nhất */
-  min-width: 100px;
+  min-width: 80px;
 }
 
 .dashboard-table th:nth-child(6),
 .dashboard-table td:nth-child(6) {
   width: 8% !important;     /* Tổng Lần Nạp */
-  min-width: 80px;
+  min-width: 70px;
   text-align: center;
 }
 
 .dashboard-table th:nth-child(7),
 .dashboard-table td:nth-child(7) {
   width: 13% !important;    /* Ngày Thay Drum Gần Nhất */
-  min-width: 100px;
+  min-width: 80px;
 }
 
 .dashboard-table th:nth-child(8),
@@ -310,6 +310,7 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
 
 
 
