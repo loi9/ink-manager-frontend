@@ -15,8 +15,8 @@ h1, h2 {
 
 /* ================== CONTAINER ================== */
 .container {
-    max-width: 1200px;
-    width: 90%;        /* Responsive width */
+    max-width: 1800px;
+    width: 95%;        /* Responsive width */
     margin: 0 auto;
     padding: 20px;
     padding-top: 10vh; /* Đảm bảo không bị che logo cố định */
@@ -248,3 +248,4 @@ nav a.active-link {
         font-size: 1.6em;
     }
 }
+
