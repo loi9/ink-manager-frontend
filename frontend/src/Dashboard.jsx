@@ -97,7 +97,7 @@ function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {dashboardData.map((item) => (
+          {[...dashboardData].sort((a, b) => a.unit_id.localeCompare(b.unit_id)).map((item) => (
             <tr key={item.unit_id}>
               <td>{item.unit_id}</td>
               <td>{item.ink_name}</td>
