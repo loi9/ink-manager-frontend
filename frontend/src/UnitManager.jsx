@@ -191,7 +191,7 @@ function UnitManager() {
                 </thead>
 
                 <tbody>
-                    {units.map((unit) => (
+                    {[...units].sort((a, b) => a.unit_id.localeCompare(b.unit_id)).map((unit) => (
                         <tr key={unit.unit_id}>
                             {editingUnit && editingUnit.unit_id === unit.unit_id ? (
                                 // ==============================
